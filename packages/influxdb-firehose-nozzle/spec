@@ -2,7 +2,7 @@
 name: influxdb-firehose-nozzle
 
 dependencies:
-- golang1.4
+- golang
 
 files:
 - influxdb-firehose-nozzle/**/*
