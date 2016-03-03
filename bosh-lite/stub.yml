@@ -46,10 +46,12 @@ properties:
   loggregator:
     traffic_controller_url: wss://doppler.bosh-lite.com:4443
   influxdb:
-    api_url: https://app.influxdbhq.com/api/v1/series
-    api_key: API_KEY
-    flush_duration_seconds: 15
-    metric_prefix: bosh.lite.influxdb.nozzle.
+  influxdb:
+    db_url: 127.0.0.1
+    db_database: database
+    db_user: user
+    db_password: "cloudc0w!"
+    metric_prefix: cf.
   uaa:
     url: https://uaa.bosh-lite.com
     username: influxdb-firehose-nozzle

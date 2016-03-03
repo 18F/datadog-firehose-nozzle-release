@@ -43,9 +43,10 @@ properties:
   loggregator:
     traffic_controller_url: (( merge ))
   influxdb:
-    api_url: (( merge ))
-    api_key: (( merge ))
-    flush_duration_seconds: (( merge ))
+    db_url: (( merge ))
+    db_database: (( merge ))
+    db_user: (( merge ))
+    db_password: (( merge ))
     metric_prefix: (( merge ))
   uaa:
     url: (( merge ))
