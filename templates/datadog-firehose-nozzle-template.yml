@@ -4,12 +4,12 @@ meta: (( merge ))
 name: (( merge ))
 director_uuid: (( merge ))
 releases:
-  - name: datadog-firehose-nozzle
+  - name: influxdb-firehose-nozzle
     version: latest
 
 compilation:
   workers: (( merge ))
-  network: datadog-firehose-nozzle-net
+  network: influxdb-firehose-nozzle-net
   reuse_compilation_vms: true
   cloud_properties: (( merge ))
 
@@ -21,28 +21,28 @@ update:
   max_errors: 1
 
 networks:
-- name: datadog-firehose-nozzle-net
+- name: influxdb-firehose-nozzle-net
   subnets: (( merge ))
 
 resource_pools:
-- name: datadog-firehose-nozzle
-  network: datadog-firehose-nozzle-net
+- name: influxdb-firehose-nozzle
+  network: influxdb-firehose-nozzle-net
   stemcell: (( meta.stemcell ))
   cloud_properties: (( merge ))
 
 jobs:
-- name: datadog-firehose-nozzle
+- name: influxdb-firehose-nozzle
   memory_mb: 2048
   templates:
-    - {name: datadog-firehose-nozzle, release: datadog-firehose-nozzle}
+    - {name: influxdb-firehose-nozzle, release: influxdb-firehose-nozzle}
   instances: (( merge ))
-  resource_pool: datadog-firehose-nozzle
+  resource_pool: influxdb-firehose-nozzle
   networks: (( merge ))
 
 properties:
   loggregator:
     traffic_controller_url: (( merge ))
-  datadog:
+  influxdb:
     api_url: (( merge ))
     api_key: (( merge ))
     flush_duration_seconds: (( merge ))

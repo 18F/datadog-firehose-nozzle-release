@@ -1,11 +1,11 @@
 ---
 meta:
-  environment: datadog-nozzle-warden
+  environment: influxdb-nozzle-warden
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
 
-name: datadog-firehose-nozzle
+name: influxdb-firehose-nozzle
 director_uuid: PLACEHOLDER-DIRECTOR-UUID
 
 compilation:
@@ -14,7 +14,7 @@ compilation:
   cloud_properties: {}
 
 networks:
-- name: datadog-firehose-nozzle-net
+- name: influxdb-firehose-nozzle-net
   subnets:
     - range: 10.244.99.0/30
       reserved:
@@ -33,28 +33,28 @@ networks:
       cloud_properties: {}
 
 jobs:
-- name: datadog-firehose-nozzle
+- name: influxdb-firehose-nozzle
   instances: 1
   networks:
-  - name: datadog-firehose-nozzle-net
+  - name: influxdb-firehose-nozzle-net
 
 resource_pools:
-- name: datadog-firehose-nozzle
+- name: influxdb-firehose-nozzle
   cloud_properties: {}
 
 properties:
   loggregator:
     traffic_controller_url: wss://doppler.bosh-lite.com:4443
-  datadog:
-    api_url: https://app.datadoghq.com/api/v1/series
+  influxdb:
+    api_url: https://app.influxdbhq.com/api/v1/series
     api_key: API_KEY
     flush_duration_seconds: 15
-    metric_prefix: bosh.lite.datadog.nozzle.
+    metric_prefix: bosh.lite.influxdb.nozzle.
   uaa:
     url: https://uaa.bosh-lite.com
-    username: datadog-firehose-nozzle
-    password: datadog-password
+    username: influxdb-firehose-nozzle
+    password: influxdb-password
   nozzle:
     insecure_ssl_skip_verify: true
-    subscription_id: datadog-nozzle
+    subscription_id: influxdb-nozzle
     deployment: (( meta.environment ))

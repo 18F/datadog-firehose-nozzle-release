@@ -1,2 +1,2 @@
-# datadog-firehose-nozzle-release
-BOSH release for datadog-firehose-nozzle
+# influxdb-firehose-nozzle-release
+BOSH release for influxdb-firehose-nozzle

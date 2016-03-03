@@ -1,0 +1,34 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/influxdb-firehose-nozzle
+LOG_DIR=/var/vcap/sys/log/influxdb-firehose-nozzle
+PIDFILE=$RUN_DIR/influxdb-firehose-nozzle.pid
+
+case $1 in
+
+start)
+
+mkdir -p $RUN_DIR
+mkdir -p $LOG_DIR
+
+chown -R vcap:vcap $LOG_DIR
+
+echo $$ > $PIDFILE
+
+exec chpst -u vcap:vcap /var/vcap/packages/influxdb-firehose-nozzle/influxdb-firehose-nozzle \
+--config /var/vcap/jobs/influxdb-firehose-nozzle/config/influxdb-firehose-nozzle.json \
+>>$LOG_DIR/influxdb-firehose-nozzle.stdout.log \
+2>>$LOG_DIR/influxdb-firehose-nozzle.stderr.log
+;;
+
+stop)
+kill -9 `cat $PIDFILE`
+rm -f $PIDFILE
+;;
+
+*)
+echo "Usage: influxdb-firehose-nozzle {start|stop}"
+
+;;
+
+esac

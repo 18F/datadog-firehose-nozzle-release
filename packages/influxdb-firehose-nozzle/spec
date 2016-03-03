@@ -1,0 +1,8 @@
+---
+name: influxdb-firehose-nozzle
+
+dependencies:
+- golang1.4
+
+files:
+- influxdb-firehose-nozzle/**/*
